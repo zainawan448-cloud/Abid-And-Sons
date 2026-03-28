@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Abid and Sons</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            background:pink;
+        }
+        /* DARK MODE */
+        .dark {
+            background: #121212;
+            color:white ;
+            
+
+        }
+/* HEADER */
+       header {
+    background: lightpink;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    
+}
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 50px;
+    letter-spacing: 2px;
+    margin: 0;
+     
+    text-transform: uppercase;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+
+header p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 26px;
+    margin-top: 5px;
+}
+        .ceo {
+            text-align: center;
+            padding: 20px;
+            background: lightblue
+        }
+
+        .ceo img {
+            width: 120px;
+            border-radius: 50%;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .product {
+            background: white;
+            width: 90%;
+            max-width: 250px;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .product img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        button {
+            padding: 10px;
+            background: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        #cart {
+            background: white;
+            padding: 15px;
+            margin: 10px;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="toggle-btn" onclick="toggleMode()">🌙</button>
+
+<header>
+    <h1>Abid and Sons</h1>
+    <p>Premium Beauty Store</p>
+</header>
+
+<div class="banner">
+    Big Sale 🔥 Up to 10% OFF on Advance Payment
+</div>
+<div style="display:flex; justify-content:center; flex-wrap:wrap; padding:20px;">
+
+<div style="background:white; margin:10px; padding:15px; border-radius:10px;">
+    <h3>🧴 Face Care</h3>
+</div>
+
+<div style="background:white; margin:10px; padding:15px; border-radius:10px;">
+    <h3>🧼 Cleansers</h3>
+</div>
+
+<div style="background:white; margin:10px; padding:15px; border-radius:10px;">
+    <h3>🧴 Hair Care</h3>
+</div>
+
+<div style="background:white; margin:10px; padding:15px; border-radius:10px;">
+    <h3>💊 Supplements</h3>
+</div>
+
+</div>
+
+<script>
+function toggleMode(){
+    document.body.classList.toggle("dark");
+}
+</script>
+
+
+<div class="ceo">
+    <img src="ceo.jpeg">
+    <h3>CEO: Zain Abid Awan</h3>
+</div>
+
+<div id="cart">
+    <h2>🛒 Cart</h2>
+    <ul id="cart-items"></ul>
+    <h3 id="total">Total: Rs 0</h3>
+</div>
+
+<div class="container">
+
+<script>
+let cart = [];
+let total = 0;
+
+function addToCart(name, price){
+    cart.push({name, price});
+    total += price;
+    updateCart();
+}
+
+function updateCart(){
+    let list = document.getElementById("cart-items");
+    list.innerHTML = "";
+
+    cart.forEach(item=>{
+        let li = document.createElement("li");
+        li.textContent = item.name + " - Rs " + item.price;
+        list.appendChild(li);
+    });
+
+    document.getElementById("total").innerText = "Total: Rs " + total;
+}
+</script>
+<div style="text-align:center; padding:15px;">
+    <input type="text" id="search" placeholder="Search products..." 
+    style="padding:10px; width:80%; max-width:400px; border-radius:5px; border:1px solid #ccc;">
+</div>
+
+<script>
+document.getElementById("search").addEventListener("keyup", function(){
+    let value = this.value.toLowerCase();
+    let products = document.querySelectorAll(".product");
+
+    products.forEach(p => {
+        let name = p.innerText.toLowerCase();
+        p.style.display = name.includes(value) ? "block" : "none";
+    });
+});
+</script>
+<!-- PRODUCTS -->
+
+<div class="product">
+    <img src="melsa.jpeg">
+    <h3>Melsa Cream</h3>
+    <p>Rs 1100</p>
+    <button onclick="addToCart('Melsa Cream',1100)">Add to Cart</button>
+</div>
+
+<div class="product">
+    <img src="permag;ow facewash.jpeg">
+    <h3>PermaGlo Face Wash</h3>
+    <p>Rs 998</p>
+    <button onclick="addToCart('PermaGlo Face Wash',998)">Add</button>
+</div>
+
+<div class="product">
+    <img src="exfo c facewash.jpeg">
+    <h3>Exfo-C Facewash</h3>
+    <p>Rs 1050</p>
+    <button onclick="addToCart('Exfo-C Facewash',1050)">Add</button>
+</div>
+
+<div class="product">
+    <img src="perma glow cream.jpeg">
+    <h3>PermaGlo Cream</h3>
+    <p>Rs 1500</p>
+    <button onclick="addToCart('PermaGlo Cream',1500)">Add</button>
+</div>
+
+<div class="product">
+    <img src="sunblock.jpeg">
+    <h3>UV Melt Sunblock</h3>
+    <p>Rs 1200</p>
+    <button onclick="addToCart('UV Melt Sunblock',1200)">Add</button>
+</div>
+
+<div class="product">
+    <img src="hydra ve moisturizer.jpeg">
+    <h3>Hydra Ve Moisturizer</h3>
+    <p>Rs 800</p>
+    <button onclick="addToCart('Hydra Ve Moisturizer',800)">Add</button>
+</div>
+
+<div class="product">
+    <img src="hydra ve soap.jpeg">
+    <h3>Hydra Ve Soap</h3>
+    <p>Rs 350</p>
+    <button onclick="addToCart('Hydra Ve Soap',350)">Add</button>
+</div>
+
+<div class="product">
+    <img src="hydra ve emolient.jpeg">
+    <h3>Hydra Ve Emollient</h3>
+    <p>Rs 450</p>
+    <button onclick="addToCart('Hydra Ve Emollient',450)">Add</button>
+</div>
+
+<div class="product">
+    <img src="quigrow shampoo.jpeg">
+    <h3>Quigrow Shampoo</h3>
+    <p>Rs 1400</p>
+    <button onclick="addToCart('Quigrow Shampoo',1400)">Add</button>
+</div>
+
+<div class="product">
+    <img src="sebogo shampoo.jpeg">
+    <h3>Sebogo Shampoo</h3>
+    <p>Rs 950</p>
+    <button onclick="addToCart('Sebogo Shampoo',950)">Add</button>
+</div>
+
+<div class="product">
+    <img src="leucowash.jpeg">
+    <h3>Lucowash</h3>
+    <p>Rs 800</p>
+    <button onclick="addToCart('Lucowash',800)">Add</button>
+</div>
+
+<div class="product">
+    <img src="fe wash.jpeg">
+    <h3>Fe-Wash</h3>
+    <p>Rs 700</p>
+    <button onclick="addToCart('Fe-Wash',700)">Add</button>
+</div>
+
+<div class="product">
+    <img src="neuropin.jpeg">
+    <h3>Neuropin Drops</h3>
+    <p>Rs 2490</p>
+    <button onclick="addToCart('Neuropin Drops',2490)">Add</button>
+</div>
+
+<div class="product">
+    <img src="magnesium.jpeg">
+    <h3>Magnesium Glycinate</h3>
+    <p>Rs 1190</p>
+    <button onclick="addToCart('Magnesium Glycinate',1190)">Add</button>
+</div>
+
+<div class="product">
+    <img src="tribozex.jpeg">
+    <h3>Tribozex Tablets</h3>
+    <p>Rs 3560</p>
+    <button onclick="addToCart('Tribozex Tablets',3560)">Add</button>
+</div>
+
+</div>
+<div id="popup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000000aa;">
+
+<div style="background:white; margin:50px auto; padding:20px; width:90%; max-width:400px;">
+    <h2 id="pname"></h2>
+    <p id="pprice"></p>
+    <button onclick="addToCart(currentName,currentPrice)">Add to Cart</button>
+    <button onclick="closePopup()">Close</button>
+</div>
+
+</div>
+
+<script>
+let currentName, currentPrice;
+
+function showDetail(name, price){
+    currentName = name;
+    currentPrice = price;
+
+    document.getElementById("popup").style.display="block";
+    document.getElementById("pname").innerText = name;
+    document.getElementById("pprice").innerText = "Rs " + price;
+}
+
+function closePopup(){
+    document.getElementById("popup").style.display="none";
+}
+</script>
+
+<div style="background:white; padding:20px; margin:10px;">
+    <h2>💳 Checkout</h2>
+    <p><b>JazzCash:</b> 0324 6367702</p>
+    <p><b>Sadapay:</b> 0348 6267702</p>
+    <p><b>Account Name:</b> ZAIN ABID AWAN</p>
+    <p><b>IBAN:</b> PK17FAYS3309301000003054</p>
+    <p>📲 After payment, send screenshot on WhatsApp: 0348 6267702</p>
+</div>
+<div style="background:white; padding:20px; margin:10px;">
+    <h2>⭐ Customer Reviews</h2>
+
+    <p>⭐⭐⭐⭐⭐ "Best products! Skin improved in 1 week" - Ayesha</p>
+    <p>⭐⭐⭐⭐⭐ "Quality bohat achi hai" - Ali</p>
+    <p>⭐⭐⭐⭐⭐ "Fast delivery and original products" - Sana</p>
+</div>
+<div id="popup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000000aa;">
+
+<div style="background:white; margin:50px auto; padding:20px; width:90%; max-width:400px;">
+    <h2 id="pname"></h2>
+    <p id="pprice"></p>
+    <button onclick="addToCart(currentName,currentPrice)">Add to Cart</button>
+    <button onclick="closePopup()">Close</button>
+</div>
+
+</div>
+
+<script>
+
+
+function showDetail(name, price){
+    currentName = name;
+    currentPrice = price;
+
+    document.getElementById("popup").style.display="block";
+    document.getElementById("pname").innerText = name;
+    document.getElementById("pprice").innerText = "Rs " + price;
+}
+
+function closePopup(){
+    document.getElementById("popup").style.display="none";
+}
+</script>
+<footer>
+    <p>📍 Hafizabad</p>
+    <p>📞 0348 6267702</p>
+    <p>📧 zainawan11881@gmail.com</p>
+    <p>© 2026 Abid and Sons</p>
+</footer>
+
+</body>
+</html>
